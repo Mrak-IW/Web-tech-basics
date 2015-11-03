@@ -24,8 +24,47 @@
 			<li><a href="test.html">Тест</a></li>
 		</ul>
 	</nav>
-
-	<p>Курс предназначен для широкого круга слушателей, которые хотели бы освоить такие Web-технологии как HTML5, CSS3, JavaScript, но не имеют предварительных профильных знаний в этой области. Предварительные знания/навыки: уверенное пользование ПК и программным обеспечением. Практическая работа будет проводится с использованием текстового редактора Notepad++.</p>
+	
+	<form>
+		<p>
+			Какой тег предназначен для создания ссылок:<br />
+			<label><input type="radio" name="rbHLink" value="" />&lt;a&gt;</label><br />
+			<label><input type="radio" name="rbHLink" value="" />&lt;a /&gt;</label><br />
+			<label><input type="radio" name="rbHLink" value="" />&lt;ref&gt;</label><br />
+			<label><input type="radio" name="rbHLink" value="" />&lt;ref /&gt;</label><br />
+		</p>
+		<p>
+			Какой тег предназначен для создания нумерованного списка:<br />
+			<label><input type="radio" name="rbNumList" value="" />&lt;li&gt;</label><br />
+			<label><input type="radio" name="rbNumList" value="" />&lt;dl&gt;</label><br />
+			<label><input type="radio" name="rbNumList" value="" />&lt;ol&gt;</label><br />
+			<label><input type="radio" name="rbNumList" value="" />&lt;ul&gt;</label><br />
+		</p>
+		<p>
+			Какой тег предназначен для передачи служебной информации браузеру:<br />
+			<label><input type="radio" name="rbMaintenanceInfo" value="" />&lt;info&gt;</label><br />
+			<label><input type="radio" name="rbMaintenanceInfo" value="" />&lt;info /&gt;</label><br />
+			<label><input type="radio" name="rbMaintenanceInfo" value="" />&lt;meta&gt;</label><br />
+			<label><input type="radio" name="rbMaintenanceInfo" value="" />&lt;meta /&gt;</label><br />
+		</p>
+		<p>
+			Какие теги используются при создании таблицы:<br />
+			<label><input type="radio" name="rbTable" value="" />&lt;bodyt&gt;</label><br />
+			<label><input type="radio" name="rbTable" value="" />&lt;td&gt;</label><br />
+			<label><input type="radio" name="rbTable" value="" />&lt;groupcol&gt;</label><br />
+			<label><input type="radio" name="rbTable" value="" />&lt;col /&gt;</label><br />
+		</p>
+		<p>
+			Какие атрибуты используются при создании форм:<br />
+			<label><input type="radio" name="rbForm" value="" />autocomplete</label><br />
+			<label><input type="radio" name="rbForm" value="" />action</label><br />
+			<label><input type="radio" name="rbForm" value="" />charset</label><br />
+			<label><input type="radio" name="rbForm" value="" />validate</label><br />
+		</p>
+		<p>
+			<input type="submit" value="Результат">
+		</p>
+	</form>
 	
 	<footer>
 		<address>
