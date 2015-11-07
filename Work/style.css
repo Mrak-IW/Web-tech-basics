@@ -76,12 +76,14 @@ dd {
 }
 .calc {
 	margin: 0 auto;
+	border-spacing: 2px;
 }
 .calc input {
     width: 100%;
+	height: 30px;
 }
 #equal {
-	height: 42px;
+	height: 62px;
 }
 #inputNum {
 	width: 180pt;
