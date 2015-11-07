@@ -3,16 +3,17 @@
 <head>
 	<title>CSS3</title>
 	<meta charset="utf-8" />
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<header>
-		<a href="index.html"><img src="webLogo.png" id="titleImage" alt="Картинко" width="200" /></a>
+	<a href="index.html" class="logo"><img src="webLogo.png" id="titleImage" alt="Картинко" width="200" /></a>
 		<h1>Основы Web-технологий</h1>
 		<nav>
-			<ul>
+			<ul class="headMenu">
 				<li><a href="index.html">Главная</a></li>
-				<li><a href="webtech.html">Web-технологии</a>
+				<li class="hasSubmenu"><a href="webtech.html">Web-технологии</a>
 					<ul>
 						<li><a href="html5.html">	HTML5		</a></li>
 						<li><a href="css3.html">	CSS3		</a></li>
@@ -24,14 +25,16 @@
 			</ul>
 		</nav>
 	</header>
-
-	<article>
-		<h2>CSS3</h2>
-
-		<p><strong><dfn>CSS</dfn></strong> (англ. Cascading Style Sheets — каскадные таблицы стилей) — <em>формальный язык</em> описания внешнего вида документа, написанного с использованием <em>языка разметки</em>.
-		Преимущественно используется как средство описания, оформления внешнего вида <em>Web-страниц</em>, написанных с помощью <em>языков разметки</em> HTML и XHTML, но может также применяться к любым XML-<em>документам</em>, например, к SVG или XUL.</p>
-	</article>
 	
+	<div class="body">
+		<article>
+			<h2>CSS3</h2>
+
+			<p><strong><dfn>CSS</dfn></strong> (англ. Cascading Style Sheets — каскадные таблицы стилей) — <em>формальный язык</em> описания внешнего вида документа, написанного с использованием <em>языка разметки</em>.
+			Преимущественно используется как средство описания, оформления внешнего вида <em>Web-страниц</em>, написанных с помощью <em>языков разметки</em> HTML и XHTML, но может также применяться к любым XML-<em>документам</em>, например, к SVG или XUL.</p>
+		</article>
+	</div>
+		
 	<footer>
 		<address>
 			<a href="mailto:d.vi.masluv@gmail.com">Пишите: d.vi.masluv@gmail.com</a><br />

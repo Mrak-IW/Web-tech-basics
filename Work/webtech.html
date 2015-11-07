@@ -3,16 +3,17 @@
 <head>
 	<title>Web-технологии-технологии</title>
 	<meta charset="utf-8" />
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<header>
-		<a href="index.html"><img src="webLogo.png" id="titleImage" alt="Картинко" width="200" /></a>
+	<a href="index.html" class="logo"><img src="webLogo.png" id="titleImage" alt="Картинко" width="200" /></a>
 		<h1>Основы Web-технологий</h1>
 		<nav>
-			<ul>
+			<ul class="headMenu">
 				<li><a href="index.html">Главная</a></li>
-				<li><a href="webtech.html">Web-технологии</a>
+				<li class="hasSubmenu"><a href="webtech.html">Web-технологии</a>
 					<ul>
 						<li><a href="html5.html">	HTML5		</a></li>
 						<li><a href="css3.html">	CSS3		</a></li>
@@ -24,62 +25,64 @@
 			</ul>
 		</nav>
 	</header>
-
-	<article>
-		Web-технологии можно условно разделить на две пересекающиеся группы: <em>клиентские</em> и <em>серверные</em>
-		<ul>
-			<li>
-				<section>
-					<header>Клиентские:</header>
-					<dl>
-						<dt>
-							<strong>HTML</strong>
-						</dt>
-						<dd>
-							стандартный язык разметки Web-страниц
-						</dd>
-						<dt>
-							<strong>CSS</strong>
-						</dt>
-						<dd>
-							средство описания и оформления внешнего вида Web-страниц
-						</dd>
-						<dt>
-							<strong>JavaScript</strong>
-						</dt>
-						<dd>
-							применяется в браузерах как язык сценариев для придания интерактивности Web-страницам
-						</dd>
-					</dl>
-				</section>
-			</li>
-			<li>
-				<section>
-					<header>Серверные:</header>
-					<dl>
-						<dt>
-							<strong>ASP.NET (C#)</strong>
-						</dt>
-						<dd>
-							технология создания Web-приложений от компании Microsoft
-						</dd>
-						<dt>
-							<strong>JSP (Java)</strong>
-						</dt>
-						<dd>
-							технология создания Web-приложений от компании Oracle
-						</dd>
-						<dt>
-							<strong>PHP</strong>
-						</dt>
-						<dd>
-							язык программирования, интенсивно применяемый для разработки Web-приложений
-						</dd>
-					</dl>
-				</section>
-			</li>
-		</ul>
-	</article>
+	
+	<div class="body">
+		<article>
+			Web-технологии можно условно разделить на две пересекающиеся группы: <em>клиентские</em> и <em>серверные</em>
+			<ul>
+				<li>
+					<section>
+						<header>Клиентские:</header>
+						<dl>
+							<dt>
+								<strong>HTML</strong>
+							</dt>
+							<dd>
+								стандартный язык разметки Web-страниц
+							</dd>
+							<dt>
+								<strong>CSS</strong>
+							</dt>
+							<dd>
+								средство описания и оформления внешнего вида Web-страниц
+							</dd>
+							<dt>
+								<strong>JavaScript</strong>
+							</dt>
+							<dd>
+								применяется в браузерах как язык сценариев для придания интерактивности Web-страницам
+							</dd>
+						</dl>
+					</section>
+				</li>
+				<li>
+					<section>
+						<header>Серверные:</header>
+						<dl>
+							<dt>
+								<strong>ASP.NET (C#)</strong>
+							</dt>
+							<dd>
+								технология создания Web-приложений от компании Microsoft
+							</dd>
+							<dt>
+								<strong>JSP (Java)</strong>
+							</dt>
+							<dd>
+								технология создания Web-приложений от компании Oracle
+							</dd>
+							<dt>
+								<strong>PHP</strong>
+							</dt>
+							<dd>
+								язык программирования, интенсивно применяемый для разработки Web-приложений
+							</dd>
+						</dl>
+					</section>
+				</li>
+			</ul>
+		</article>
+	</div>
 	
 	<footer>
 		<address>
