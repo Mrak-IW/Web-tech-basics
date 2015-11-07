@@ -1,0 +1,11 @@
+body {
+	background-color: grey;
+}
+h1 {
+	width: 300px;
+}
+header, footer, article, .body {
+	border-radius: 10px;
+	background-color: white;
+	
+}
