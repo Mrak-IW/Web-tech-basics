@@ -68,10 +68,11 @@ dd {
 }
 .body > aside {
 	float: right;
-	background-color: grey;
+	background-color: lightgrey;
 	width: 150pt;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 10pt;
+	margin-left: 5pt;
 }
 .calc {
 	margin: 0 auto;
