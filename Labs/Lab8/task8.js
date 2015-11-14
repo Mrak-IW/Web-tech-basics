@@ -267,11 +267,9 @@ do {
 					resultString = "";
 				}
 				
-			} while (actNum != NaN && actNum > 0 && actNum <= 6);
+			} while (!isNaN(actNum) && actNum > 0 && actNum <= 6);
 			break;
-		default:
-			alert("Задание с номером " + taskNum + " ещё не выполнено. Попробуйте номер поменьше.");
 	}
-} while (taskNum != NaN && taskNum > 0 && taskNum <= 12);
+} while (!isNaN(taskNum) && taskNum > 0 && taskNum <= 12);
 
 alert("Задания с номером " + taskNum + " не существует.\nРабота завершена.");
