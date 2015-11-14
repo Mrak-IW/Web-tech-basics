@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Задание 4.3</title>
+	<meta charset="utf-8" />
+	<style>
+		img#titleImage {width: 250px;}
+		.c1 + .c2 {
+		   color: blue;
+		}
+		p:hover, input:hover {color: green;}
+		body {margin: 0 auto;} /*Выравнивание элемента строго по центру*/
+	</style>
+</head>
+
+<body>
+	<form>
+		Выберите дату:<input type="date" name="date" /><br />
+		Выберите время:<input type="time" name="time" /><br />
+		Выберите глобальную дату:<input type="datetime" size="25" value="2014-09-29T18:30:00+02:00" /><br />
+		Введите местную дату и время:<input type="datetime-local" name="dateTime" />
+	</form>
+	<p><em class="c1" id="id1">Текст</em> <em class="c2">Текст</em></p>
+</body>
+</html>
