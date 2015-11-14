@@ -5,10 +5,10 @@ do {
 	taskNum = +prompt("Ввести номер задания", "");
 	taskTitle = "Задание " + taskNum + ". ";
 
-	switch(taskNum){
+	switch (taskNum) {
 		case 1:		//Задание 1
 			var a = +prompt(taskTitle + "Введите сторону квадрата", "");
-			if(a != 0 && a!= NaN) {
+			if (a != 0 && a!= NaN) {
 				alert("Площадь квадрата = " + a + "^2 = " + a * a);
 			}
 			break;
@@ -27,13 +27,13 @@ do {
 			var d = b * b - 4 * a * c;
 			var x1, x2;
 
-			if(d < 0) {
+			if (d < 0) {
 				alert("Уравнение не имеет решения в поле действительных чисел");
 			} else {
 				x1 = (-b + Math.sqrt(d)) / (2 * a);
 				x2 = (-b - Math.sqrt(d)) / (2 * a);
 				
-				if(x1 == x2) {
+				if (x1 == x2) {
 					alert("x = " + x1);
 				} else {
 					alert("x1 = " + x1 + " x2 = " + x2);
@@ -42,7 +42,7 @@ do {
 			break;
 		case 4:		//Задание 4
 			var a = prompt(taskTitle + "Введите число", "0");
-			if(a > 0) {
+			if (a > 0) {
 				a += 1;
 			} else if (a < 0) {
 				a -= 2;
@@ -57,15 +57,15 @@ do {
 			var c = +prompt(taskTitle + "Введите C",	"1");
 			var res;
 
-			if(a > b){
-				if(c > b){	//b - min
+			if (a > b) {
+				if (c > b) {	//b - min
 					res = a + c;
 				} else {	//c - min
 					res = a + b;
 				}
 			} else			//a <= b
 			{
-				if(c > a){	//a - min
+				if (c > a) {	//a - min
 					res = b + c;
 				} else {	//c - min
 					res = a + b;
@@ -78,16 +78,16 @@ do {
 			var a = +prompt(taskTitle + "Введите что-нибудь",	"");
 			var res;
 
-			if(a == 0){
+			if (a == 0) {
 				res = "Нулевое число";
 			} else {
 				res = "Число ";
-				if(a > 0){
+				if (a > 0) {
 					res += "положительное ";
 				} else {
 					res += "отрицательное ";
 				}
-				if(a % 2 == 0){
+				if (a % 2 == 0) {
 					res += "чётное";
 				} else {
 					res += "нечётное";
@@ -123,14 +123,14 @@ do {
 			var d = +prompt(taskTitle + "Введите D",	"1");
 			var num;
 
-			if(b == a){
-				if(b == c){
+			if (b == a) {
+				if (b == c) {
 					num = 4;
 				} else {
 					num = 3;
 				} 	
 			} else {
-				if(a == c){
+				if (a == c) {
 					num = 2;
 				} else {
 					num = 1;
@@ -141,7 +141,7 @@ do {
 		case 10:	//Задание 10
 			var mark = +prompt(taskTitle + "Введите оценку",	"1");
 			var res;
-			switch(mark){
+			switch (mark) {
 				case 5:
 					res = "отлично";
 					break;
@@ -165,7 +165,7 @@ do {
 		case 11:
 			var month = +prompt(taskTitle + "Введите номер месяца", "1");
 			var res = "Месяц №" + month + " - это ";
-			switch(month){
+			switch (month) {
 				case 3:
 				case 4:
 				case 5:
@@ -204,13 +204,13 @@ do {
 			var resultString = "";
 			var operationString = "";
 			
-			do{
+			do {
 				statusString = "op1 = " + op1 + "\nop2 = " + op2;
 				actNum = +prompt(interfaceString + "\n\n" + statusString + "\n\n" + resultString,	"1");
 				correctResult = false;
 				errorText = "";
 				
-				switch(actNum){
+				switch (actNum) {
 					case 1:		//Задать операнд 1
 						op1 = +prompt(statusString + "\n\nВведите операнд 1", "");
 						break;
@@ -219,7 +219,7 @@ do {
 						break;
 					case 3:		//Сложение
 						operationString = " + ";
-						if(!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined) {
+						if (!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined) {
 							res = op1 + op2;
 							correctResult = true;
 						} else {
@@ -228,7 +228,7 @@ do {
 						break;
 					case 4:		//Вычитание
 						operationString = " - ";
-						if(!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined) {
+						if (!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined) {
 							res = op1 - op2;
 							correctResult = true;
 						} else {
@@ -237,7 +237,7 @@ do {
 						break;
 					case 5:		//Умножение
 						operationString = " * ";
-						if(!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined) {
+						if (!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined) {
 							res = op1 * op2;
 							correctResult = true;
 						} else {
@@ -246,11 +246,11 @@ do {
 						break;
 					case 6:		//Деление
 						operationString = " / ";
-						if(op2 == 0) {
+						if (op2 == 0) {
 							errorText = "Попытка деления на ноль";
 							break;
 						}
-						if(!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined && op2 != 0) {
+						if (!isNaN(op1) && op1 != undefined && !isNaN(op2) && op2 != undefined && op2 != 0) {
 							res = op1 / op2;
 							correctResult = true;
 						} else {
@@ -259,9 +259,9 @@ do {
 						break;
 				}
 				
-				if(correctResult){
+				if (correctResult) {
 					resultString = op1 + operationString + op2 + " = " + res;
-				} else if(errorText != ""){
+				} else if (errorText != "") {
 					resultString = "ОШИБКА: " + errorText;
 				} else {
 					resultString = "";
