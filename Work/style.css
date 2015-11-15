@@ -90,3 +90,7 @@ dd {
 	text-align: right;
 	padding-right: 3pt;
 }
+#calcOutput {
+	width: 100%;
+	text-align: right;
+}

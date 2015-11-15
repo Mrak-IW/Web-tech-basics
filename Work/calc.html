@@ -4,6 +4,7 @@
 	<title>Калькулятор</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="calc.js"></script>
 </head>
 
 <body>
@@ -27,36 +28,39 @@
 	</header>
 	
 	<div class="body">
-		<form>
+		<form name="frmCalc">
 			<table class="calc">
 				<tr>
-					<td colspan="5"><input type="text" id="inputNum" placeholder="0" /></td>
+					<td colspan="5"><p name="calcOutput" id="calcOutput">&nbsp;</p></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="7" /></td>
-					<td><input type="button" value="8" /></td>
-					<td><input type="button" value="9" /></td>
-					<td><input type="button" value="/" /></td>
-					<td><input type="button" value="C" /></td>
+					<td colspan="5"><input type="text" name="screen" id="inputNum" placeholder="0" /></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="4" /></td>
-					<td><input type="button" value="5" /></td>
-					<td><input type="button" value="6" /></td>
-					<td><input type="button" value="*" /></td>
-					<td><input type="button" value="&plusmn;" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="7" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="8" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="9" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="/" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="C" /></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="1" /></td>
-					<td><input type="button" value="2" /></td>
-					<td><input type="button" value="3" /></td>
-					<td><input type="button" value="-" /></td>
-					<td rowspan="2"><input type="button" id="equal" value="=" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="4" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="5" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="6" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="*" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="&plusmn;" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" value="0" /></td>
-					<td><input type="button" value="." /></td>
-					<td><input type="button" value="+" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="1" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="2" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="3" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="-" /></td>
+					<td rowspan="2"><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" id="equal" value="=" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" name="btn0" value="0" /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="." /></td>
+					<td><input type="button" onclick="btnHandler.call(this, 'frmCalc', 'screen', 'calcOutput')" value="+" /></td>
 				</tr>
 			</table>
 		</form>
