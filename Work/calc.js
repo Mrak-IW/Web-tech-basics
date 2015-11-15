@@ -9,7 +9,7 @@ function btnHandler(formName, inputName, outputName) {
 	var newOperation = this.value;
 	var outText = "";
 	
-	switch(newOperation) {
+	switch (newOperation) {
 		case "±":
 			if (arg1 != null) {
 				arg2 = -+input.value;
@@ -22,8 +22,8 @@ function btnHandler(formName, inputName, outputName) {
 			}
 			break;
 		case ".":
-			if(input.value.indexOf(newOperation) < 0) {
-				if(input.value == "") {
+			if (input.value.indexOf(newOperation) < 0) {
+				if (input.value == "") {
 					input.value = "0" + newOperation;
 				} else {
 					input.value += newOperation;
