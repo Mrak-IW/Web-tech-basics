@@ -81,6 +81,7 @@ function btnHandler(formName, inputName, outputName) {
 			if (arg1 != null) {
 				arg2 = +input.value;
 				execute ();
+				
 				//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
 				if (memory != null && memoryOperation !=null) {
 					arg2 = arg1;
