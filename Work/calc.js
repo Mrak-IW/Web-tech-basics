@@ -2,7 +2,7 @@ var arg1 = null;
 var arg2 = null;
 var memory;
 var operation;
-var operationMemory;
+var memoryOperation;
 
 function btnHandler(formName, inputName, outputName) {
 	var input = document[formName].elements[inputName];
@@ -56,6 +56,18 @@ function btnHandler(formName, inputName, outputName) {
 				arg2 = +input.value;
 				outText = arg1 + " " + operation + " " + arg2 + " = ";
 				input.value = execute();
+				
+				//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
+				if (memory != null && memoryOperation !=null) {
+					arg2 = arg1;
+					arg1 = memory;
+					operation = memoryOperation;
+					outText = arg1 + " " + operation + " " + outText;
+					memory = null;
+					memoryOperation = null;
+					input.value = execute();
+				}
+				
 				outText += input.value;
 				operation = null;
 				arg1 = null;
@@ -63,21 +75,60 @@ function btnHandler(formName, inputName, outputName) {
 				outText = input.value;
 			}
 			break;
-		default:	//Бинарные операции
-			if (arg1 == null) {
-				arg1 = +input.value;
-			} else {
+		//Бинарные операции с низким приоритетом
+		case "+":
+		case "-":	
+			if (arg1 != null) {
 				arg2 = +input.value;
 				execute ();
+				//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
+				if (memory != null && memoryOperation !=null) {
+					arg2 = arg1;
+					arg1 = memory;
+					operation = memoryOperation;
+					outText = arg1 + " " + operation + " " + outText;
+					memory = null;
+					memoryOperation = null;
+					execute();
+				}
+			} else {
+				arg1 = +input.value;
 			}
 			input.value = "";
 			operation = newOperation;
+			break;
+		//Бинарные операции с высоким приоритетом
+		case "*":
+		case "/":
+			if (arg1 != null) {
+				if (operation == "+" || operation == "-") {
+					//Вытесняем менее приоритетную операцию в память
+					memory = arg1;
+					memoryOperation = operation;
+					arg1 = null;
+					operation = null;
+				} else {
+					arg2 = +input.value;
+					execute ();
+				}
+			}
+			if (arg1 == null) {
+				arg1 = +input.value;
+			}
+			input.value = "";
+			operation = newOperation;
+			break;
 	}
-	if(arg1 !=null) {
+	
+	if (arg1 != null) {
 		outText = arg1 + " " + operation + " " + input.value;
-	} else if (outText == ""){
+	} else if (outText == "") {
 		outText = input.value;
 	}
+	if (memory != null && memoryOperation != null) {
+		outText = memory + " " + memoryOperation + " " + outText;
+	}
+	
 	document.getElementsByName(outputName)[0].textContent = outText;
 	input.focus();
 }
