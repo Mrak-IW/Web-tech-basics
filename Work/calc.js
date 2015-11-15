@@ -1,5 +1,6 @@
 var arg1 = null;
 var arg2 = null;
+var result;
 var memory;
 var operation;
 var memoryOperation;
@@ -129,7 +130,9 @@ function btnHandler(formName, inputName, outputName) {
 	if (memory != null && memoryOperation != null) {
 		outText = memory + " " + memoryOperation + " " + outText;
 	}
-	
+	if (result == Infinity) {
+		outText = "ОШИБКА: Попытка деления на ноль.";
+	}
 	document.getElementsByName(outputName)[0].textContent = outText;
 	input.focus();
 }
@@ -149,7 +152,7 @@ function execute() {
 			arg1 = arg1 / arg2;
 			break;
 	}
-	//arg1 = null;
 	arg2 = null;
+	result = arg1;
 	return arg1;
 }
