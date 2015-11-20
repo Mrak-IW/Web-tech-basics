@@ -1,9 +1,9 @@
 var arg1 = null;
 var arg2 = null;
 var result;
-var memory;
 var operation;
-var memoryOperation;
+var memory;				//Временное хранилище для одного из аргументов
+var memoryOperation;	//Временное хранилище для операции с этим аргументом
 
 function btnHandler(formName, inputName, outputName) {
 	var input = document[formName].elements[inputName];
@@ -79,7 +79,7 @@ function btnHandler(formName, inputName, outputName) {
 		//Бинарные операции с низким приоритетом
 		case "+":
 		case "-":	
-			if (arg1 != null) {
+			if (arg1 != null) {	//В этом случае сейчас будет задан второй аргумент и можно начинать вычисления
 				arg2 = +input.value;
 				execute ();
 				
@@ -102,7 +102,7 @@ function btnHandler(formName, inputName, outputName) {
 		//Бинарные операции с высоким приоритетом
 		case "*":
 		case "/":
-			if (arg1 != null) {
+			if (arg1 != null) {	//В этом случае сейчас будет задан второй аргумент и можно начинать вычисления
 				if (operation == "+" || operation == "-") {
 					//Вытесняем менее приоритетную операцию в память
 					memory = arg1;
