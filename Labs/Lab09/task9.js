@@ -65,10 +65,12 @@ do {
 		case 6:		//Задание 6
 			var n = +prompt(taskTitle + "Ввести целое N", "-1234");
 			var x = Math.abs(n);
+			var c;
 			var res = "";
 			while (x > 0) {
-				res = (x % 10) + ", " + res;
-				x = (x / 10).toFixed(0);
+				c = x % 10;
+				res = c + ", " + res;
+				x = (x - c) / 10;
 			}
 			alert(taskTitle + "Число " + n + " состоит из цифр [" + res + "]");
 			break;
@@ -90,7 +92,7 @@ do {
 			var buf;
 			do {
 				buf = prompt(taskTitle + "Ввести число больше 100", "");
-			} while (buf != null && +buf <= 100);
+			} while (buf !== null && +buf <= 100);
 			alert(taskTitle + "Цикл завершён на вводе \"" + buf + "\"");
 			break;
 		case 9:		//Задание 8
