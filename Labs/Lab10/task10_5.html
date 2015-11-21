@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Свойства узлов</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <div><b>Привет мир!</b></div>
+      <div><i>Привет мир!</i></div>
+      <script>
+         var div1 = document.body.children[0];
+		 var div2 = document.body.children[1];
+		 var buf;
+		 buf = div1.innerHTML;
+		 div1.innerHTML = div2.innerHTML;
+		 div2.innerHTML = buf;
+      </script>
+   </body>
+</html>

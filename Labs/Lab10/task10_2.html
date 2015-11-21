@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Навигация в DOM</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <table>
+         <caption>Таблица</caption>
+         <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+         </tr>
+         <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+         </tr>
+      </table>
+      <script>
+         var table = document.body.children[0];
+		 var cap = table.children[0];
+		 var cell00 = table.rows[0].cells[0];
+		 var cell12 = table.rows[1].cells[2];
+		 alert("Количество строк в таблице: " + table.rows.length + "\n" + cap.innerHTML + "\ntable[0, 0] = " + cell00.innerHTML + "\ntable[1, 2] = " + cell12.innerHTML);
+      </script>
+   </body>
+</html>

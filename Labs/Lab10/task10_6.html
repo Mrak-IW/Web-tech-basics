@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Свойства узлов</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	Текстовый узел №1<br />
+	Текстовый узел №2<br />
+	Текстовый узел №3<br />
+	Текстовый узел №4
+	<script>
+		var TEXT_NODE = 3;
+		var nodes = document.body.childNodes;
+		var firstText = null;
+		var lastText = null;
+		
+		for (var i = 0; i < nodes.length; i++) {
+			if (nodes[i].nodeType == TEXT_NODE) {
+				lastText = nodes[i];
+				if (firstText === null) {
+					firstText = nodes[i];
+				}
+			}
+		}
+		alert("Первый текстовый узел: \t" + firstText.nodeValue + "\nПоследний текстовый узел: \t" + lastText.nodeValue);
+	</script>
+</body>
+</html>

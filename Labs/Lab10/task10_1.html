@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Навигация в DOM</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <div>Пользователи:</div>
+      <ul>
+         <li>Маша</li>
+         <li>Вовочка</li>
+      </ul>
+      <!-- комментарий -->
+      <script>
+		var head = document.documentElement.children[0];
+		var ul = document.body.children[1];
+		var li2 = ul.children[1];
+        alert(head + ", " + ul + ", " + li2.innerHTML);
+      </script>
+   </body>
+</html>

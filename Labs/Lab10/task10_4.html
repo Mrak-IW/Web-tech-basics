@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Свойства узлов</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <div>Блок текста №1</div>
+      <p>Абзац №1</p>
+      <p>Абзац №2</p>
+      <div>Блок текста №2</div>
+      <p>Абзац №3</p>
+      <script>
+         var allElements = document.body.children;
+         var pElements = [];
+         // Ваш код
+		 for (var i = 0, j = 0; i < allElements.length; i++) {
+			if (allElements[i].tagName == "P") {
+				pElements[j] = allElements[i];
+				j++;
+			}
+		 }
+         alert(pElements.length); // Должно вывести 3
+      </script>
+   </body>
+</html>

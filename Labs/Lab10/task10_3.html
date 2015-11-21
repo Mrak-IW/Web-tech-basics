@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Навигация в DOM</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <form name="authForm">
+         Логин:<br />
+         <input type="text" name="log" /><br />
+         Пароль:<br />
+         <input type="text" name="pass" /><br />
+         <button name="signIn">Войти</button>
+      </form>
+      <script>
+         var frmByName = document.forms.authForm;
+		 var frmByNum = document.forms[0];
+		 var input0 = frmByName.log;
+		 var btnSignIn = frmByName.signIn;
+		 alert("frmByName.name:\t" + frmByName.name + "\nfrmByNum.name:\t" + frmByNum.name + "\ninput0.name:\t\t" + input0.name + "\nКнопка\:\t\t\t\t" + btnSignIn.innerHTML);
+      </script>
+   </body>
+</html>
