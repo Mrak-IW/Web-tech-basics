@@ -6,7 +6,8 @@ var memory;				//Временное хранилище для одного из 
 var memoryOperation;	//Временное хранилище для операции с этим аргументом
 
 function btnHandler(formName, inputName, outputName) {
-	var input = document[formName].elements[inputName];
+	var form = this.form;
+	var input = form.elements[inputName];
 	var newOperation = this.value;
 	var outText = "";
 	
@@ -133,7 +134,7 @@ function btnHandler(formName, inputName, outputName) {
 	if (result == Infinity) {
 		outText = "ОШИБКА: Попытка деления на ноль.";
 	}
-	document.getElementsByName(outputName)[0].textContent = outText;
+	document.getElementsByName(outputName)[0].innerHTML = "<b>" + outText + "</b>";
 	input.focus();
 }
 
