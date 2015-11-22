@@ -5,7 +5,7 @@ var operation;
 var memory;				//Временное хранилище для одного из аргументов
 var memoryOperation;	//Временное хранилище для операции с этим аргументом
 
-function btnHandler(formName, inputName, outputName) {
+function btnHandler(inputName, outputName) {
 	var form = this.form;
 	var input = form.elements[inputName];
 	var newOperation = this.value;
