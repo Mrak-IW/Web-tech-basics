@@ -5,6 +5,36 @@ var operation;
 var memory;				//Временное хранилище для одного из аргументов
 var memoryOperation;	//Временное хранилище для операции с этим аргументом
 
+function init(caller, inputName, outputName) {
+	var calc = {};
+	calc.form = caller.form;
+	calc.input = calc.form.elements[inputName];
+	calc.output = document.getElementsByName(outputName)[0];
+	calc.newOperation = caller.value;
+	return calc;
+}
+function btnDigit(inputName, outputName) {
+	var calc = init(this, inputName, outputName);
+	var outText = "";
+	//Специфическая обработка
+	/*input.value += newOperation;
+	
+	
+	if (arg1 != null) {
+		outText = arg1 + " " + operation + " " + input.value;
+	} else if (outText == "") {
+		outText = input.value;
+	}
+	if (memory != null && memoryOperation != null) {
+		outText = memory + " " + memoryOperation + " " + outText;
+	}
+	if (result == Infinity) {
+		outText = "ОШИБКА: Попытка деления на ноль.";
+	}
+	output.innerHTML = "<b>" + outText + "</b>";
+	input.focus();*/
+}
+
 function btnHandler(inputName, outputName) {
 	var form = this.form;
 	var input = form.elements[inputName];
