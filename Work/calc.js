@@ -17,7 +17,6 @@ function btnReset(inputName, outputName) {
 //Обработчик цифровой кнопки
 function btnDigit(inputName, outputName) {
 	var cmd = init(this, inputName, outputName);
-	//Специфическая обработка
 	cmd.input.value += cmd.newOperation;
 	printResult(cmd);
 }
