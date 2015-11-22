@@ -1,134 +1,104 @@
-var arg1 = null;
-var arg2 = null;
-var result;
-var operation;
+var arg1 = null;		//Первый аргумент выражения
+var arg2 = null;		//Второй аргумент выражения
+var operation;			//Символ выполняемой операции (+-*/)
 var memory;				//Временное хранилище для одного из аргументов
 var memoryOperation;	//Временное хранилище для операции с этим аргументом
+var errDiv0 = false;
 
-function init(caller, inputName, outputName) {
-	var calc = {};
-	calc.form = caller.form;
-	calc.input = calc.form.elements[inputName];
-	calc.output = document.getElementsByName(outputName)[0];
-	calc.newOperation = caller.value;
-	return calc;
+//Обработчик кнопки сброса
+function btnReset(inputName, outputName) {
+	var cmd = init(this, inputName, outputName);
+	resetcalc();
+	cmd.input.value = null;
+	cmd.outText = "&nbsp;";
+	printResult(cmd);
 }
+
+//Обработчик цифровой кнопки
 function btnDigit(inputName, outputName) {
-	var calc = init(this, inputName, outputName);
-	var outText = "";
+	var cmd = init(this, inputName, outputName);
 	//Специфическая обработка
-	/*input.value += newOperation;
-	
-	
-	if (arg1 != null) {
-		outText = arg1 + " " + operation + " " + input.value;
-	} else if (outText == "") {
-		outText = input.value;
-	}
-	if (memory != null && memoryOperation != null) {
-		outText = memory + " " + memoryOperation + " " + outText;
-	}
-	if (result == Infinity) {
-		outText = "ОШИБКА: Попытка деления на ноль.";
-	}
-	output.innerHTML = "<b>" + outText + "</b>";
-	input.focus();*/
+	cmd.input.value += cmd.newOperation;
+	printResult(cmd);
 }
 
-function btnHandler(inputName, outputName) {
-	var form = this.form;
-	var input = form.elements[inputName];
-	var newOperation = this.value;
-	var outText = "";
-	
-	switch (newOperation) {
-		case "±":
-			if (arg1 != null) {
-				arg2 = -+input.value;
-				input.value = arg2;
-				arg2 = null;
-			} else {
-				arg1 = -+input.value;
-				input.value = arg1;
-				arg1 = null;
+//Обработчик кнопки ±
+function btnChangeSign(inputName, outputName) {
+	var cmd = init(this, inputName, outputName);
+	var buf = -+cmd.input.value;
+		cmd.input.value = buf;
+	printResult(cmd);
+}
+
+//Обработчик кнопки .
+function btnDot(inputName, outputName) {
+	var cmd = init(this, inputName, outputName);
+	if (cmd.input.value.indexOf(".") < 0) {
+		if (cmd.input.value == "") {
+			cmd.input.value = "0" + ".";
+		} else {
+			cmd.input.value += ".";
+		}
+	}
+	printResult(cmd);
+}
+
+//Обработчик кнопки =
+function btnEqual(inputName, outputName) {
+	var cmd = init(this, inputName, outputName);
+	if (arg1 != null) {
+		arg2 = +cmd.input.value;
+		cmd.outText = arg1 + " " + operation + " " + arg2 + " = ";
+		cmd.input.value = execute();
+		if (errDiv0 == false) {
+			//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
+			if (memory != null && memoryOperation !=null) {
+				arg2 = arg1;
+				arg1 = memory;
+				operation = memoryOperation;
+				cmd.outText = arg1 + " " + operation + " " + cmd.outText;
+				memory = null;
+				memoryOperation = null;
+				cmd.input.value = execute();
 			}
-			break;
-		case ".":
-			if (input.value.indexOf(newOperation) < 0) {
-				if (input.value == "") {
-					input.value = "0" + newOperation;
-				} else {
-					input.value += newOperation;
-				}
-			}
-			break;
-		case "0":
-		case "1":
-		case "2":
-		case "3":
-		case "4":
-		case "5":
-		case "6":
-		case "7":
-		case "8":
-		case "9":
-			input.value += newOperation;
-			break;
-		case "C":
+			cmd.outText += cmd.input.value;
+			operation = null;
 			arg1 = null;
-			arg2 = null;
-			operator = null;
-			memory = null;
-			operatorMemory = null;
-			input.value = null;
-			outText = "reset";
-			break;
-		case "=":
-			if (arg1 != null) {
-				arg2 = +input.value;
-				outText = arg1 + " " + operation + " " + arg2 + " = ";
-				input.value = execute();
-				
-				//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
-				if (memory != null && memoryOperation !=null) {
-					arg2 = arg1;
-					arg1 = memory;
-					operation = memoryOperation;
-					outText = arg1 + " " + operation + " " + outText;
-					memory = null;
-					memoryOperation = null;
-					input.value = execute();
-				}
-				
-				outText += input.value;
-				operation = null;
-				arg1 = null;
-			} else {
-				outText = input.value;
-			}
-			break;
+		}
+	} else {
+		cmd.outText = cmd.input.value;
+	}
+	printResult(cmd);
+}
+
+//Обработчик кнопки с бинарной операцией
+function btnBinaryOperation(inputName, outputName) {
+	var cmd = init(this, inputName, outputName);
+	switch (cmd.newOperation) {
 		//Бинарные операции с низким приоритетом
 		case "+":
 		case "-":	
 			if (arg1 != null) {	//В этом случае сейчас будет задан второй аргумент и можно начинать вычисления
-				arg2 = +input.value;
+				arg2 = +cmd.input.value;
 				execute ();
-				
+				if (errDiv0) {
+					break;
+				}
 				//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
 				if (memory != null && memoryOperation !=null) {
 					arg2 = arg1;
 					arg1 = memory;
 					operation = memoryOperation;
-					outText = arg1 + " " + operation + " " + outText;
+					cmd.outText = arg1 + " " + operation + " " + cmd.outText;
 					memory = null;
 					memoryOperation = null;
 					execute();
 				}
 			} else {
-				arg1 = +input.value;
+				arg1 = +cmd.input.value;
 			}
-			input.value = "";
-			operation = newOperation;
+			cmd.input.value = "";
+			operation = cmd.newOperation;
 			break;
 		//Бинарные операции с высоким приоритетом
 		case "*":
@@ -141,34 +111,25 @@ function btnHandler(inputName, outputName) {
 					arg1 = null;
 					operation = null;
 				} else {
-					arg2 = +input.value;
+					arg2 = +cmd.input.value;
 					execute ();
 				}
 			}
 			if (arg1 == null) {
-				arg1 = +input.value;
+				arg1 = +cmd.input.value;
 			}
-			input.value = "";
-			operation = newOperation;
+			cmd.input.value = "";
+			operation = cmd.newOperation;
 			break;
+		default:
+			alert("Вызвана неизвестная бинарная операция \"" + cmd.newOperation + "\"");
 	}
-	
-	if (arg1 != null) {
-		outText = arg1 + " " + operation + " " + input.value;
-	} else if (outText == "") {
-		outText = input.value;
-	}
-	if (memory != null && memoryOperation != null) {
-		outText = memory + " " + memoryOperation + " " + outText;
-	}
-	if (result == Infinity) {
-		outText = "ОШИБКА: Попытка деления на ноль.";
-	}
-	document.getElementsByName(outputName)[0].innerHTML = "<b>" + outText + "</b>";
-	input.focus();
+	printResult(cmd);
 }
 
+//Выполнить операцию, заданную в operation над arg1 и arg2 с записью в arg1
 function execute() {
+	errDiv0 = false;
 	switch (operation) {
 		case "+":
 			arg1 = arg1 + arg2;
@@ -180,10 +141,52 @@ function execute() {
 			arg1 = arg1 * arg2;
 			break;
 		case "/":
+			if (arg2 == 0) {
+				errDiv0 = true;
+			}
 			arg1 = arg1 / arg2;
 			break;
 	}
 	arg2 = null;
-	result = arg1;
 	return arg1;
+}
+
+//Подготавливает "окружение" команды для калькулятора
+function init(caller, inputName, outputName) {
+	var command = {};
+	command.form = caller.form;
+	command.input = command.form.elements[inputName];			//Где находится поле ввода калькулятора
+	command.output = document.getElementsByName(outputName)[0];	//Где находится строка вывода калькулятора
+	command.newOperation = caller.value;
+	command.outText = "";
+	return command;
+}
+
+//Выводит результат работы команды на интерфейс
+function printResult(command) {
+	if (arg1 != null) {
+		command.outText = arg1 + " " + operation + " " + command.input.value;
+	} else if (command.outText == "") {
+		command.outText = command.input.value;
+	}
+	if (memory != null && memoryOperation != null) {
+		command.outText = memory + " " + memoryOperation + " " + command.outText;
+	}
+	if (errDiv0 == true) {
+		resetcalc();
+		command.outText = "ОШИБКА: Деление на ноль.";
+		command.input.value = "";
+	}
+	command.output.innerHTML = command.outText;
+	command.input.focus();
+}
+
+//Сброс внутреннего состояния калькулятора в начальное
+function resetcalc() {
+	arg1 = null;
+	arg2 = null;
+	operator = null;
+	memory = null;
+	memoryOperation = null;
+	errDiv0 = false;
 }
