@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <script src="jquery-2.1.4.js"></script>
+   </head>
+   <body>
+      <p>Сложение</p>
+      <p>Вычитание</p>
+      <p>Умножение</p>
+      <p>Деление</p>
+      <script>
+		// Ваш код
+		var output = document.createElement("div");
+		output.innerHTML = "";
+		
+		var result;
+		result = "Количество абзацев:\t" + $("p").length + "\n";
+		$("p").each(function(index, elem) {
+			elem.style = "font-weight:bold";
+		});
+		$("p").first().css("color", "blue");
+		$("p").eq(2).css("color", "red");
+		
+		output.innerHTML = result;
+		$("body")[0].appendChild(output);
+      </script>
+   </body>
+</html>

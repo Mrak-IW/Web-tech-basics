@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Поиск узлов</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <form name="search">
+         <label>Поиск по сайту: <input type="text" name="search" /></label>
+         <input type="submit" value="Искать!" />
+      </form>
+      <hr />
+      <form name="search-person">
+         Поиск по посетителям:
+         <table id="age-table">
+         <tr>
+            <td>Возраст:</td>
+            <td id="age-list">
+               <label><input type="radio" name="age" value="young" />до 18</label>
+               <label><input type="radio" name="age" value="mature" />18-50</label>
+               <label><input type="radio" name="age" value="senior" />более 50</label>
+            </td>
+         </tr>
+         <tr>
+            <td>Дополнительно:</td>
+            <td>
+               <input type="text" name="info[0]" value="test" />
+               <input type="text" name="info[1]" />
+               <input type="text" name="info[2]" />
+            </td>
+         </tr>
+         </table>
+         <input type="submit" value="Искать!" />
+      </form>
+      <script>
+        // Ваш код
+		var i;
+		var table = document.getElementById("age-table");
+		var labels = table.getElementsByTagName("label");
+		var cell = table.rows[0].cells[0];
+		var forms = document.getElementsByTagName("form");
+		var form2 = forms[1];
+		var formSearch;
+		for (i = 0; i < forms.length; i++) {
+			if (forms[i].name == "search") {
+				formSearch = forms[i];
+				break;
+			}
+		}
+		var input = formSearch.getElementsByTagName("input")[0];
+		var info01 = document.getElementsByName("info[0]")[0];
+		var info02 = document.forms["search-person"]["info[0]"];
+		alert(	table + ".id = " + table.id + "\n" +
+				labels + ".length = " + labels.length + "\n" + 
+				cell + "innerHTML = " + cell.innerHTML + "\n" +
+				form2 + ".name = " + form2.name + "\n" +
+				formSearch + ".name = " + formSearch.name + "\n" +
+				input + ".name = " + input.name + "\n" + 
+				info01 + ".name = " + info01.name + "\n" +
+				info02 + ".name = " + info02.name + "\n");
+      </script>
+   </body>
+</html>

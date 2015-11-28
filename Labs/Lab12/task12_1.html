@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <script src="jquery-2.1.4.js"></script>
+   </head>
+   <body>
+      <p>Яблоко</p>
+      <p>Манго</p>
+      <p>Мандарин</p>
+      <ol>
+         <li>Помидор</li>
+         <li>Капуста</li>
+         <li>Лук</li>
+      </ol>
+      <script>
+         // Ваш код
+		 $("p:even").css("color", "red");
+		 $("p:eq(1)").css("color", "green");
+		 $("li:gt(0)").css("color", "blue");
+		 $("ol").css("font-style", "italic");
+      </script>
+   </body>
+</html>

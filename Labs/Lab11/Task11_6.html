@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>События</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<button>Нажмите, чтобы спрятать текст</button>
+		<button>Нажмите, чтобы !спрятать текст</button>
+		<p id="hide">Текст</p>
+		<script>
+			// Ваш код
+			var btns = document.getElementsByTagName("button");
+			btns[0].onclick = function () {
+				document.getElementById("hide").style = "visibility: hidden;";
+			}
+			btns[1].onclick = function () {
+				document.getElementById("hide").style = null;
+			}
+		</script>
+	</body>
+</html>

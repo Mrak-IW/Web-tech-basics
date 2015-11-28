@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <script src="jquery-2.1.4.js"></script>
+   </head>
+   <body>
+      <div>Огонь</div>
+      <div class="d"><p>Вода</p></div>
+      <div class="d">Воздух</div>
+      <div><p>Земля</p></div>
+      <script>
+         // Ваш код
+		 var divs = $("div");
+		 divs.filter(".d").css("color", "red");
+		 divs.not(".d").css("color", "blue");
+		 divs.slice(divs.length-2).css("font-weight", "bold");
+		 divs.has("p").css("font-style", "italic");
+      </script>
+   </body>
+</html>

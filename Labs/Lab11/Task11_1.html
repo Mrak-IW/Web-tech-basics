@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Атрибуты узлов</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<div data-widget-name="menu">Выберите жанр</div>
+		<script>
+			var div = document.body.children[0];
+			var attr = div.getAttribute("data-widget-name");
+			alert("div.data-widget-name = " + attr);
+		</script>
+	</body>
+</html>

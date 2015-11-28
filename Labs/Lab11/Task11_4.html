@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Добавление узлов</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<div>Это</div>
+		<div>Элементы</div>
+		<script>
+			function insertAfter(elem, refElem) {
+				// Ваш код
+				if (refElem.nextElementSibling === null) {
+					refElem.parentNode.appendChild(elem);
+				} else {
+					refElem.parentNode.insertBefore(elem, refElem.nextElementSibling);
+				}
+			}
+			var e1 = document.createElement("div");
+			e1.innerHTML = "<b>Новый элемент 1</b>";
+			var e2 = document.createElement("div");
+			e2.innerHTML = "<b>Новый элемент 2</b>";
+			var b = document.body;
+			insertAfter(e1, b.firstChild); // Вставка после первого элемента
+			insertAfter(e2, b.lastChild); // Вставка за последним элементом
+		</script>
+	</body>
+</html>

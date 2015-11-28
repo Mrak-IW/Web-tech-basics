@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <script src="jquery-2.1.4.js"></script>
+   </head>
+   <body>
+      <div>
+         <p>Зима</p>
+         <p id="p1">Весна</p>
+         <p>Лето</p>
+         <p>Осень</p>
+      </div>
+      <script>
+		// Ваш код
+		var div = $("div").eq(0);
+		var arrP = div.children();
+		arrP.css("font-weight", "bold");
+		var varP1 = div.children("#p1");
+		varP1.css("color", "red");
+		var varP2 = varP1.next();
+		varP2.css("color", "blue");
+		
+		var output = document.createElement("p");
+		output.innerHTML += "Содержимое varP2 = \"" + varP2[0].innerHTML + "\"";
+		$("body")[0].appendChild(output);
+      </script>
+   </body>
+</html>

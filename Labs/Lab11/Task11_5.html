@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Удаление и замена узлов</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   </head>
+   <body>
+      <div>Это</div>
+      <div>Все</div>
+      <div>Элементы DOM</div>
+      <script>
+         function remove(elem) { 
+            // Ваш код
+			elem.parentNode.removeChild(elem);
+         }
+         var e = document.body.children[0];
+         remove(e); // Удаление элемента
+      </script>
+   </body>
+</html>
