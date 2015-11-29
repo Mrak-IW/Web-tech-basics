@@ -12,10 +12,12 @@
 			// Ваш код
 			var btns = document.getElementsByTagName("button");
 			btns[0].onclick = function () {
-				document.getElementById("hide").style = "visibility: hidden;";
+				//document.getElementById("hide").style = "visibility: hidden;";
+				document.getElementById("hide").setAttribute("style", "visibility: hidden;");
 			}
 			btns[1].onclick = function () {
-				document.getElementById("hide").style = null;
+				//document.getElementById("hide").style = null;
+				document.getElementById("hide").setAttribute("style", "");
 			}
 		</script>
 	</body>
