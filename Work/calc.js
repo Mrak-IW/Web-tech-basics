@@ -4,81 +4,97 @@ var operation;			//Символ выполняемой операции (+-*/)
 var memory;				//Временное хранилище для одного из аргументов
 var memoryOperation;	//Временное хранилище для операции с этим аргументом
 var errDiv0 = false;
+var form;				//Форма калькулятора
+var input;				//Поле ввода калькулятора
+var output;				//Элемент для вывода результата
+
+//Задание обработчиков кнопок калькулятора
+function handlersInit(frmName, inputName, idOutputElem) {
+	form = document[frmName];
+	input = form.elements[inputName];
+	output = document.getElementById(idOutputElem);
+}
 
 //Обработчик кнопки сброса
 function btnReset(inputName, outputName) {
-	var cmd = init(this, inputName, outputName);
+	var newOperation = this.value;
+	var outText = "";
 	resetcalc();
-	cmd.input.value = null;
-	cmd.outText = "&nbsp;";
-	printResult(cmd);
+	input.value = null;
+	outText = "&nbsp;";
+	printResult(outText);
 }
 
 //Обработчик цифровой кнопки
 function btnDigit(inputName, outputName) {
-	var cmd = init(this, inputName, outputName);
-	cmd.input.value += cmd.newOperation;
-	printResult(cmd);
+	var newOperation = this.value;
+	var outText = "";
+	input.value += newOperation;
+	printResult(outText);
 }
 
 //Обработчик кнопки ±
 function btnChangeSign(inputName, outputName) {
-	var cmd = init(this, inputName, outputName);
-	var buf = -+cmd.input.value;
-		cmd.input.value = buf;
-	printResult(cmd);
+	var newOperation = this.value;
+	var outText = "";
+	var buf = -+input.value;
+		input.value = buf;
+	printResult(outText);
 }
 
 //Обработчик кнопки .
 function btnDot(inputName, outputName) {
-	var cmd = init(this, inputName, outputName);
-	if (cmd.input.value.indexOf(".") < 0) {
-		if (cmd.input.value == "") {
-			cmd.input.value = "0" + ".";
+	var newOperation = this.value;
+	var outText = "";
+	if (input.value.indexOf(".") < 0) {
+		if (input.value == "") {
+			input.value = "0" + ".";
 		} else {
-			cmd.input.value += ".";
+			input.value += ".";
 		}
 	}
-	printResult(cmd);
+	printResult(outText);
 }
 
 //Обработчик кнопки =
 function btnEqual(inputName, outputName) {
-	var cmd = init(this, inputName, outputName);
+	var newOperation = this.value;
+	var outText = "";
 	if (arg1 != null) {
-		arg2 = +cmd.input.value;
-		cmd.outText = arg1 + " " + operation + " " + arg2 + " = ";
-		cmd.input.value = execute();
+		arg2 = +input.value;
+		outText = arg1 + " " + operation + " " + arg2 + " = ";
+		input.value = execute();
 		if (errDiv0 == false) {
 			//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
 			if (memory != null && memoryOperation !=null) {
 				arg2 = arg1;
 				arg1 = memory;
 				operation = memoryOperation;
-				cmd.outText = arg1 + " " + operation + " " + cmd.outText;
+				outText = arg1 + " " + operation + " " + outText;
 				memory = null;
 				memoryOperation = null;
-				cmd.input.value = execute();
+				input.value = execute();
 			}
-			cmd.outText += cmd.input.value;
+			outText += input.value;
 			operation = null;
 			arg1 = null;
 		}
 	} else {
-		cmd.outText = cmd.input.value;
+		outText = input.value;
 	}
-	printResult(cmd);
+	printResult(outText);
 }
 
 //Обработчик кнопки с бинарной операцией
 function btnBinaryOperation(inputName, outputName) {
-	var cmd = init(this, inputName, outputName);
-	switch (cmd.newOperation) {
+	var newOperation = this.value;
+	var outText = "";
+	switch (newOperation) {
 		//Бинарные операции с низким приоритетом
 		case "+":
 		case "-":	
 			if (arg1 != null) {	//В этом случае сейчас будет задан второй аргумент и можно начинать вычисления
-				arg2 = +cmd.input.value;
+				arg2 = +input.value;
 				execute ();
 				if (errDiv0) {
 					break;
@@ -88,16 +104,16 @@ function btnBinaryOperation(inputName, outputName) {
 					arg2 = arg1;
 					arg1 = memory;
 					operation = memoryOperation;
-					cmd.outText = arg1 + " " + operation + " " + cmd.outText;
+					outText = arg1 + " " + operation + " " + outText;
 					memory = null;
 					memoryOperation = null;
 					execute();
 				}
 			} else {
-				arg1 = +cmd.input.value;
+				arg1 = +input.value;
 			}
-			cmd.input.value = "";
-			operation = cmd.newOperation;
+			input.value = "";
+			operation = newOperation;
 			break;
 		//Бинарные операции с высоким приоритетом
 		case "*":
@@ -110,20 +126,20 @@ function btnBinaryOperation(inputName, outputName) {
 					arg1 = null;
 					operation = null;
 				} else {
-					arg2 = +cmd.input.value;
+					arg2 = +input.value;
 					execute ();
 				}
 			}
 			if (arg1 == null) {
-				arg1 = +cmd.input.value;
+				arg1 = +input.value;
 			}
-			cmd.input.value = "";
-			operation = cmd.newOperation;
+			input.value = "";
+			operation = newOperation;
 			break;
 		default:
-			alert("Вызвана неизвестная бинарная операция \"" + cmd.newOperation + "\"");
+			alert("Вызвана неизвестная бинарная операция \"" + newOperation + "\"");
 	}
-	printResult(cmd);
+	printResult(outText);
 }
 
 //Выполнить операцию, заданную в operation над arg1 и arg2 с записью в arg1
@@ -150,34 +166,23 @@ function execute() {
 	return arg1;
 }
 
-//Подготавливает "окружение" команды для калькулятора
-function init(caller, inputName, outputName) {
-	var command = {};
-	command.form = caller.form;
-	command.input = command.form.elements[inputName];			//Где находится поле ввода калькулятора
-	command.output = document.getElementsByName(outputName)[0];	//Где находится строка вывода калькулятора
-	command.newOperation = caller.value;
-	command.outText = "";
-	return command;
-}
-
 //Выводит результат работы команды на интерфейс
-function printResult(command) {
+function printResult(outText) {
 	if (arg1 != null) {
-		command.outText = arg1 + " " + operation + " " + command.input.value;
-	} else if (command.outText == "") {
-		command.outText = command.input.value;
+		outText = arg1 + " " + operation + " " + input.value;
+	} else if (outText == "") {
+		outText = input.value;
 	}
 	if (memory != null && memoryOperation != null) {
-		command.outText = memory + " " + memoryOperation + " " + command.outText;
+		outText = memory + " " + memoryOperation + " " + outText;
 	}
 	if (errDiv0 == true) {
 		resetcalc();
-		command.outText = "ОШИБКА: Деление на ноль.";
-		command.input.value = "";
+		outText = "ОШИБКА: Деление на ноль.";
+		input.value = "";
 	}
-	command.output.innerHTML = command.outText;
-	command.input.focus();
+	output.innerHTML = outText;
+	input.focus();
 }
 
 //Сброс внутреннего состояния калькулятора в начальное

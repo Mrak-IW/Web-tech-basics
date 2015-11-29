@@ -31,7 +31,7 @@
 		<form name="frmCalc">
 			<table class="calc">
 				<tr>
-					<td colspan="5"><p name="calcOutput" id="calcOutput">&nbsp;</p></td>
+					<td colspan="5"><p id="calcOutput">&nbsp;</p></td>
 				</tr>
 				<tr>
 					<td colspan="5"><input type="text" name="screen" id="inputNum" placeholder="0" autofocus="autofocus"/></td>
@@ -63,6 +63,9 @@
 					<td><input type="button" onclick="btnBinaryOperation.call(this, 'screen', 'calcOutput')" value="+" /></td>
 				</tr>
 			</table>
+			<script>
+				handlersInit("frmCalc", "screen", "calcOutput");
+			</script>
 		</form>
 	</div>
 	
