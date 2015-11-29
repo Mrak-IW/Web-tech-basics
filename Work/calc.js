@@ -4,38 +4,72 @@ var operation;			//Символ выполняемой операции (+-*/)
 var memory;				//Временное хранилище для одного из аргументов
 var memoryOperation;	//Временное хранилище для операции с этим аргументом
 var errDiv0 = false;
-var form;				//Форма калькулятора
 var input;				//Поле ввода калькулятора
 var output;				//Элемент для вывода результата
 
 //Задание обработчиков кнопок калькулятора
 function handlersInit(frmName, inputName, idOutputElem) {
-	form = document[frmName];
+	var form = document[frmName];
 	input = form.elements[inputName];
 	output = document.getElementById(idOutputElem);
-}
-
-//Обработчик кнопки сброса
-function btnReset(inputName, outputName) {
-	var newOperation = this.value;
-	var outText = "";
-	resetcalc();
-	input.value = null;
-	outText = "&nbsp;";
-	printResult(outText);
+	
+	var elem;
+	for (var i = 0; i < form.elements.length; i++) {
+		elem = form.elements[i];
+		//console.log(elem.value);
+		if (elem.type == "button") {
+			if (!isNaN(elem.value)) {
+				elem.onclick = function() {
+					btnDigit(this.value);
+				}
+			} else {
+				switch (elem.value) {
+					case "C":
+						elem.onclick = btnReset;
+						break;
+					case "±":
+						elem.onclick = btnChangeSign;
+						break;
+					case "=":
+						elem.onclick = btnEqual;
+						break;
+					case ".":
+						elem.onclick = btnDot;
+						break;
+					case "=":
+						elem.onclick = btnEqual;
+						break;
+					case "+":
+					case "-":
+					case "*":
+					case "/":
+						elem.onclick = function() {
+							btnBinaryOperation(this.value);
+						}
+						break;
+				}
+			}
+		}
+	}
 }
 
 //Обработчик цифровой кнопки
-function btnDigit(inputName, outputName) {
-	var newOperation = this.value;
+function btnDigit(digit) {
 	var outText = "";
-	input.value += newOperation;
+	input.value += digit;
+	printResult(outText);
+}
+
+//Обработчик кнопки сброса
+function btnReset() {
+	var outText = "&nbsp;";
+	resetcalc();
+	input.value = null;
 	printResult(outText);
 }
 
 //Обработчик кнопки ±
-function btnChangeSign(inputName, outputName) {
-	var newOperation = this.value;
+function btnChangeSign() {
 	var outText = "";
 	var buf = -+input.value;
 		input.value = buf;
@@ -43,8 +77,7 @@ function btnChangeSign(inputName, outputName) {
 }
 
 //Обработчик кнопки .
-function btnDot(inputName, outputName) {
-	var newOperation = this.value;
+function btnDot() {
 	var outText = "";
 	if (input.value.indexOf(".") < 0) {
 		if (input.value == "") {
@@ -57,8 +90,7 @@ function btnDot(inputName, outputName) {
 }
 
 //Обработчик кнопки =
-function btnEqual(inputName, outputName) {
-	var newOperation = this.value;
+function btnEqual() {
 	var outText = "";
 	if (arg1 != null) {
 		arg2 = +input.value;
@@ -86,8 +118,8 @@ function btnEqual(inputName, outputName) {
 }
 
 //Обработчик кнопки с бинарной операцией
-function btnBinaryOperation(inputName, outputName) {
-	var newOperation = this.value;
+function btnBinaryOperation(opText) {
+	var newOperation = opText;
 	var outText = "";
 	switch (newOperation) {
 		//Бинарные операции с низким приоритетом
