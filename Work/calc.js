@@ -22,6 +22,11 @@ function handlersInit(frmName, inputName, idOutputElem) {
 				elem.onclick = function() {
 					btnDigit(this.value);
 				}
+				// REM Никогда не делать ТАК:
+				// elem.onclick = function() {
+					// btnDigit(elem.value);
+				// }
+				// Результат сломал мне мозг O_o
 			} else {
 				switch (elem.value) {
 					case "C":
