@@ -13,7 +13,7 @@ function testResult() {
 				checkGroups[elems[i].name] = true;
 				max++;
 			}
-			if (((elems[i].value == 1) || elems[i].checked) && !((elems[i].value == 1) && elems[i].checked)) {
+			if ((elems[i].value == 1) && !elems[i].checked || !(elems[i].value == 1) && elems[i].checked) {
 				checkGroups[elems[i].name] = false;
 			}
 		}
