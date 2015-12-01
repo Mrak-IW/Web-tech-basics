@@ -1,4 +1,5 @@
 var resElem = document.createElement("p");
+var answers = {"rbHLink":1, "rbNumList":4, "rbMaintenanceInfo":8, "cbTable":10, "cbForm":3};
 
 function testResult() {
 	var pointOfInsert = document.querySelector("form");
@@ -6,7 +7,13 @@ function testResult() {
 	var sum = 0
 	var max = 0;
 	var checkGroups = [];
+	var mustChecked;
+	var ans;
+	var pow2;
 	for (var i = 0; i < elems.length; i++) {
+		ans = answers[elems[i].name];
+		pow2 = Math.pow(2, +elems[i].value);
+		mustChecked = ((ans - ans % pow2) / pow2) % 2 == 1;
 		switch (elems[i].type)
 		{
 			case "checkbox":
@@ -17,14 +24,14 @@ function testResult() {
 					max++;
 				}
 				
-				if (elems[i].value == 1) {
+				if (mustChecked) {
 					checkGroups[elems[i].name].countRight++;
 					if (elems[i].checked) {
 						checkGroups[elems[i].name].right++;
 					}
 				}
 				
-				if ((elems[i].value == 0) && elems[i].checked) {
+				if (!mustChecked && elems[i].checked) {
 					checkGroups[elems[i].name].right--;
 				}
 				
@@ -35,7 +42,7 @@ function testResult() {
 				break;
 				
 			case "radio":
-				if(elems[i].value == 1) {
+				if(mustChecked) {
 					if (elems[i].checked) {
 						sum++;
 					}

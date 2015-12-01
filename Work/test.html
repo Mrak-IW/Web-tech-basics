@@ -31,38 +31,38 @@
 		<form>
 			<p>
 				Какой тег предназначен для создания ссылок:<br />
-				<label><input type="radio" name="rbHLink" value="1" />&lt;a&gt;</label><br />
-				<label><input type="radio" name="rbHLink" value="0" />&lt;a /&gt;</label><br />
-				<label><input type="radio" name="rbHLink" value="0" />&lt;ref&gt;</label><br />
-				<label><input type="radio" name="rbHLink" value="0" />&lt;ref /&gt;</label><br />
+				<label><input type="radio" name="rbHLink" value="0" />&lt;a&gt;</label><br />
+				<label><input type="radio" name="rbHLink" value="1" />&lt;a /&gt;</label><br />
+				<label><input type="radio" name="rbHLink" value="2" />&lt;ref&gt;</label><br />
+				<label><input type="radio" name="rbHLink" value="3" />&lt;ref /&gt;</label><br />
 			</p>
 			<p>
 				Какой тег предназначен для создания нумерованного списка:<br />
 				<label><input type="radio" name="rbNumList" value="0" />&lt;li&gt;</label><br />
-				<label><input type="radio" name="rbNumList" value="0" />&lt;dl&gt;</label><br />
-				<label><input type="radio" name="rbNumList" value="1" />&lt;ol&gt;</label><br />
-				<label><input type="radio" name="rbNumList" value="0" />&lt;ul&gt;</label><br />
+				<label><input type="radio" name="rbNumList" value="1" />&lt;dl&gt;</label><br />
+				<label><input type="radio" name="rbNumList" value="2" />&lt;ol&gt;</label><br />
+				<label><input type="radio" name="rbNumList" value="3" />&lt;ul&gt;</label><br />
 			</p>
 			<p>
 				Какой тег предназначен для передачи служебной информации браузеру:<br />
 				<label><input type="radio" name="rbMaintenanceInfo" value="0" />&lt;info&gt;</label><br />
-				<label><input type="radio" name="rbMaintenanceInfo" value="0" />&lt;info /&gt;</label><br />
-				<label><input type="radio" name="rbMaintenanceInfo" value="0" />&lt;meta&gt;</label><br />
-				<label><input type="radio" name="rbMaintenanceInfo" value="1" />&lt;meta /&gt;</label><br />
+				<label><input type="radio" name="rbMaintenanceInfo" value="1" />&lt;info /&gt;</label><br />
+				<label><input type="radio" name="rbMaintenanceInfo" value="2" />&lt;meta&gt;</label><br />
+				<label><input type="radio" name="rbMaintenanceInfo" value="3" />&lt;meta /&gt;</label><br />
 			</p>
 			<p>
 				Какие теги используются при создании таблицы:<br />
 				<label><input type="checkbox" name="cbTable" value="0" />&lt;bodyt&gt;</label><br />
 				<label><input type="checkbox" name="cbTable" value="1" />&lt;td&gt;</label><br />
-				<label><input type="checkbox" name="cbTable" value="0" />&lt;groupcol&gt;</label><br />
-				<label><input type="checkbox" name="cbTable" value="1" />&lt;col /&gt;</label><br />
+				<label><input type="checkbox" name="cbTable" value="2" />&lt;groupcol&gt;</label><br />
+				<label><input type="checkbox" name="cbTable" value="3" />&lt;col /&gt;</label><br />
 			</p>
 			<p>
 				Какие атрибуты используются при создании форм:<br />
-				<label><input type="checkbox" name="cbForm" value="1" />autocomplete</label><br />
+				<label><input type="checkbox" name="cbForm" value="0" />autocomplete</label><br />
 				<label><input type="checkbox" name="cbForm" value="1" />action</label><br />
-				<label><input type="checkbox" name="cbForm" value="0" />charset</label><br />
-				<label><input type="checkbox" name="cbForm" value="0" />validate</label><br />
+				<label><input type="checkbox" name="cbForm" value="2" />charset</label><br />
+				<label><input type="checkbox" name="cbForm" value="3" />validate</label><br />
 			</p>
 			<p>
 				<input type="button" value="Результат" onclick="testResult()">
