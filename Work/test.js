@@ -11,13 +11,20 @@ function testResult() {
 		{
 			case "checkbox":
 				if (checkGroups[elems[i].name] === undefined) {
-					checkGroups[elems[i].name] = true;
+					checkGroups[elems[i].name] = {};
+					checkGroups[elems[i].name].right = 0;
+					checkGroups[elems[i].name].count = 0;
 					max++;
 				}
-				if (((elems[i].value == 1) || elems[i].checked) && !((elems[i].value == 1) && elems[i].checked)) {
-					checkGroups[elems[i].name] = false;
+				
+				checkGroups[elems[i].name].count++;
+				
+				if (((elems[i].value == 1) && elems[i].checked) || ((elems[i].value == 0) && !elems[i].checked)) {
+					checkGroups[elems[i].name].right += 1;
 				}
+				
 				break;
+				
 			case "radio":
 				if(elems[i].value == 1) {
 					if (elems[i].checked) {
@@ -30,15 +37,10 @@ function testResult() {
 		
 	}
 	
-	console.log(sum);
 	for (var i in checkGroups) {
-		if (checkGroups[i]) {
-			sum++;
-		}
+		sum += checkGroups[i].right / checkGroups[i].count;
 	}
 	
-	console.log(checkGroups);
-	console.log(sum);
 	resElem.innerHTML = "Ваш результат: " + sum + "/" + max;
 	pointOfInsert.appendChild(resElem);
 }
