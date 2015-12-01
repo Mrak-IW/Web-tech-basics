@@ -13,14 +13,23 @@ function testResult() {
 				if (checkGroups[elems[i].name] === undefined) {
 					checkGroups[elems[i].name] = {};
 					checkGroups[elems[i].name].right = 0;
-					checkGroups[elems[i].name].count = 0;
+					checkGroups[elems[i].name].countRight = 0;
 					max++;
 				}
 				
-				checkGroups[elems[i].name].count++;
+				if (elems[i].value == 1) {
+					checkGroups[elems[i].name].countRight++;
+					if (elems[i].checked) {
+						checkGroups[elems[i].name].right++;
+					}
+				}
 				
-				if (((elems[i].value == 1) && elems[i].checked) || ((elems[i].value == 0) && !elems[i].checked)) {
-					checkGroups[elems[i].name].right += 1;
+				if ((elems[i].value == 0) && elems[i].checked) {
+					checkGroups[elems[i].name].right--;
+				}
+				
+				if (checkGroups[elems[i].name].right < 0) {
+					checkGroups[elems[i].name].right = 0;
 				}
 				
 				break;
@@ -38,7 +47,7 @@ function testResult() {
 	}
 	
 	for (var i in checkGroups) {
-		sum += checkGroups[i].right / checkGroups[i].count;
+		sum += checkGroups[i].right / checkGroups[i].countRight;
 	}
 	
 	resElem.innerHTML = "Ваш результат: " + sum + "/" + max;
