@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>jQuery</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+   </head>
+   <body>
+      <p>Строка №1</p>
+      <p>Строка №2</p>
+      <p>Строка №3</p>
+      <script>
+         // Ваш код
+		 var style = $("<style>#id1 { color: red; }\n#id2 { color: green; }\n#id3 { color: blue; }</style>");
+		 $("head").append(style);
+		 var div1 = $("<div id='id1'></div>");
+		 $("p").wrapAll(div1);
+		 var div2 = $("<div id='id2'></div>");
+		 $("p").eq(1).wrap(div2);
+		 var span = $("<span id='id3'></span>")
+		 $("p").eq(2).wrapInner(span);
+      </script>
+   </body>
+</html>

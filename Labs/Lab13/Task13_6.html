@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>jQuery</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+   </head>
+   <body>
+      <div>Блок кода №1</div>
+      <div>Блок кода №2</div>
+      <div>Блок кода №3</div>
+      <script>
+         // Ваш код
+		 var divs = $("div");
+		 divs.eq(0).before($("<div>Начало страницы</div>"));
+		 divs.last().after($("<div>Конец страницы</div>"));
+		 for (var i = 0; i < divs.length; i++) {
+			if (divs.eq(i).text() == "Блок кода №2") {
+				divs.eq(i).replaceWith("<p>Середина страницы</p>");
+			}
+		 }
+      </script>
+   </body>
+</html>
