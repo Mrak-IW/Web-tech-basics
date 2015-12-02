@@ -14,6 +14,11 @@ function testResult() {
 		ans = answers[elems[i].name];
 		pow2 = Math.pow(2, +elems[i].value);
 		mustChecked = ((ans - ans % pow2) / pow2) % 2 == 1;
+		
+		if (elems[i].name == "cbTable") {
+			console.log(elems[i].name + "[" + elems[i].value + "]");
+		}
+		
 		switch (elems[i].type)
 		{
 			case "checkbox":
@@ -35,10 +40,6 @@ function testResult() {
 					checkGroups[elems[i].name].right--;
 				}
 				
-				if (checkGroups[elems[i].name].right < 0) {
-					checkGroups[elems[i].name].right = 0;
-				}
-				
 				break;
 				
 			case "radio":
@@ -54,7 +55,9 @@ function testResult() {
 	}
 	
 	for (var i in checkGroups) {
-		sum += checkGroups[i].right / checkGroups[i].countRight;
+		if (checkGroups[i].right > 0) {
+			sum += checkGroups[i].right / checkGroups[i].countRight;
+		}
 	}
 	
 	resElem.innerHTML = "Ваш результат: " + sum + "/" + max;
