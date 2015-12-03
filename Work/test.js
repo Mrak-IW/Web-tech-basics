@@ -15,10 +15,6 @@ function testResult() {
 		pow2 = Math.pow(2, +elems[i].value);
 		mustChecked = ((ans - ans % pow2) / pow2) % 2 == 1;
 		
-		if (elems[i].name == "cbTable") {
-			console.log(elems[i].name + "[" + elems[i].value + "]");
-		}
-		
 		switch (elems[i].type)
 		{
 			case "checkbox":
