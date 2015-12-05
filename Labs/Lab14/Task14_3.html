@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>jQuery</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+   </head>
+   <body>
+      <div>Текст для манипуляций.</div>
+      <button id="bold">Жирность</button>
+      <button id="italic">Курсив</button>
+      <button id="boldItalic">Жирность + Курсив DblClick</button>
+      <button id="reset">Сброс</button>
+      <script>
+         // Ваш код
+		 var style = {};
+		 $(document).ready(function() {
+			$("body").css("background-color", "black");
+			$("div").css("color", "white");
+			
+			style["color"] = $("div").css("color");
+			style["font-weight"] = $("div").css("font-weight");
+			style["font-style"] = $("div").css("font-style");
+		 });
+
+		 $("#bold").click(function() {
+			$("div").css("font-weight", "bold");
+		 });
+		 
+		 $("#italic").click(function() {
+			$("div").css("font-style", "italic");
+		 });
+		 
+		 $("#boldItalic").dblclick(function() {
+			$("#bold").click();
+			$("#italic").click();
+		 });
+		 
+		 $("#reset").click(function(){
+			$("div").css(style);
+		 });
+		 
+      </script>
+   </body>
+</html>

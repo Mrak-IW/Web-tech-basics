@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>jQuery</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+   </head>
+   <body>
+      <div>Текст, который умеет менять свой цвет.</div>
+      <button id="red">Красный</button>
+      <button id="green">Зеленый</button>
+      <button id="blue">Синий</button>
+      <button id="black">Сброс</button>
+      <script>
+         // Ваш код
+		 $("body").on("click", "button", function(event) {
+			$("div").css("color", this.id);
+		 });
+		 
+		 $("body").append("<button id='orange'>Оранжевый</button>");
+      </script>
+   </body>
+</html>

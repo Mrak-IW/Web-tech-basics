@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>jQuery</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+   </head>
+   <body>
+      <div style="width: 260px; height: 260px; float: left">
+         <img src="webLogo.png" alt="webLogo" style="width: 100%;" />
+      </div>
+      <div>
+         <input type="radio" name="effects" value="hide" checked="checked" />Скрыть<br />
+         <input type="radio" name="effects" value="show" />Отобразить<br />
+         <input type="radio" name="effects" value="slideUp" />Скрыть (скольжение)<br />
+         <input type="radio" name="effects" value="slideDown" />Отобразить (скольжение)<br />
+         <input type="radio" name="effects" value="fadeOut" />Скрыть (прозрачность)<br />
+         <input type="radio" name="effects" value="fadeIn" />Отобразить (прозрачность)
+      </div>
+      <script>
+         // Ваш код
+		 var pict = $("img");
+		 
+		 $(":radio").change(function() {
+			switch(this.value) {
+				case "hide":
+					pict.hide();
+					break;
+			case "show":
+				pict.show();
+				break;
+			case "slideUp":
+				pict.slideUp();
+				break;
+			case "slideDown":
+				pict.slideDown();
+				break;
+			case "fadeOut":
+				pict.fadeOut();
+				break;
+			case "fadeIn":
+				pict.fadeIn();
+				break;
+			}
+		 });
+      </script>
+   </body>
+</html>
