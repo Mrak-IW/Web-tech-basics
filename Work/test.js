@@ -1,5 +1,4 @@
 var resElem = document.createElement("p");
-var answers = {"rbHLink":1, "rbNumList":4, "rbMaintenanceInfo":8, "cbTable":10, "cbForm":3};
 
 function testResult() {
 	var pointOfInsert = document.querySelector("form");
@@ -11,9 +10,7 @@ function testResult() {
 	var ans;
 	var pow2;
 	for (var i = 0; i < elems.length; i++) {
-		ans = answers[elems[i].name];
-		pow2 = Math.pow(2, +elems[i].value);
-		mustChecked = ((ans - ans % pow2) / pow2) % 2 == 1;
+		mustChecked = decode(+elems[i].value, +elems[i].getAttribute("code"));
 		
 		switch (elems[i].type)
 		{
@@ -58,4 +55,12 @@ function testResult() {
 	
 	resElem.innerHTML = "Ваш результат: " + sum + "/" + max;
 	pointOfInsert.appendChild(resElem);
+}
+
+function decode(value, code) {
+	var pow2;
+	
+	pow2 = Math.pow(2, value);
+	
+	return ((code - code % pow2) / pow2) % 2 == 1;
 }
