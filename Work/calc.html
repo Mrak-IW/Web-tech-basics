@@ -4,7 +4,8 @@
 	<title>Калькулятор</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="style.css">
-	<script type="text/javascript" src="calc.js"></script>
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="calcJQ.js"></script>
 </head>
 
 <body>
@@ -28,44 +29,41 @@
 	</header>
 	
 	<div class="body">
-		<form name="frmCalc">
+		<form name="frmCalc" id="frmCalc">
 			<table class="calc">
 				<tr>
 					<td colspan="5"><p id="calcOutput">&nbsp;</p></td>
 				</tr>
 				<tr>
-					<td colspan="5"><input type="text" name="screen" id="inputNum" placeholder="0" autofocus="autofocus"/></td>
+					<td colspan="5"><input type="text" name="screen" id="screen" placeholder="0" autofocus="autofocus"/></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="7" /></td>
-					<td><input type="button" value="8" /></td>
-					<td><input type="button" value="9" /></td>
-					<td><input type="button" value="/" /></td>
+					<td><input type="button" value="7" class="digit" /></td>
+					<td><input type="button" value="8" class="digit" /></td>
+					<td><input type="button" value="9" class="digit" /></td>
+					<td><input type="button" value="/" class="binOp" /></td>
 					<td><input type="button" value="C" /></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="4" /></td>
-					<td><input type="button" value="5" /></td>
-					<td><input type="button" value="6" /></td>
-					<td><input type="button" value="*" /></td>
+					<td><input type="button" value="4" class="digit" /></td>
+					<td><input type="button" value="5" class="digit" /></td>
+					<td><input type="button" value="6" class="digit" /></td>
+					<td><input type="button" value="*" class="binOp" /></td>
 					<td><input type="button" value="&plusmn;" /></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="1" /></td>
-					<td><input type="button" value="2" /></td>
-					<td><input type="button" value="3" /></td>
-					<td><input type="button" value="-" /></td>
+					<td><input type="button" value="1" class="digit" /></td>
+					<td><input type="button" value="2" class="digit" /></td>
+					<td><input type="button" value="3" class="digit" /></td>
+					<td><input type="button" value="-" class="binOp" /></td>
 					<td rowspan="2"><input type="button" id="equal" value="=" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" value="0" /></td>
+					<td colspan="2"><input type="button" value="0" class="digit" /></td>
 					<td><input type="button" value="." /></td>
-					<td><input type="button" value="+" /></td>
+					<td><input type="button" value="+" class="binOp" /></td>
 				</tr>
 			</table>
-			<script>
-				handlersInit("frmCalc", "screen", "calcOutput");
-			</script>
 		</form>
 	</div>
 	
