@@ -60,7 +60,7 @@ function testResult() {
 function decode(value, code) {
 	var pow2;
 	
-	pow2 = Math.pow(2, value);
+	pow2 = 1 << value;
 	
-	return ((code - code % pow2) / pow2) % 2 == 1;
+	return (code & pow2) != 0;
 }
