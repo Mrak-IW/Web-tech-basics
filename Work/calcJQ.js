@@ -37,26 +37,26 @@ function btnDigit(digit) {
 function btnReset() {
 	var outText = "&nbsp;";
 	resetcalc();
-	input.prop("value", null);
+	input.val(null);
 	printResult(outText);
 }
 
 //Обработчик кнопки ±
 function btnChangeSign() {
 	var outText = "";
-	var buf = -+input.prop("value");
-		input.prop("value", buf);
+	var buf = -+input.val();
+		input.val(buf);
 	printResult(outText);
 }
 
 //Обработчик кнопки .
 function btnDot() {
 	var outText = "";
-	if (input.prop("value").indexOf(".") < 0) {
-		if (input.prop("value") == "") {
-			input.prop("value", "0" + ".");
+	if (input.val().indexOf(".") < 0) {
+		if (input.val() == "") {
+			input.val("0" + ".");
 		} else {
-			input[0].value += ".";
+			input.val(input.val() + ".");
 		}
 	}
 	printResult(outText);
@@ -66,9 +66,9 @@ function btnDot() {
 function btnEqual() {
 	var outText = "";
 	if (arg1 != null) {
-		arg2 = +input.prop("value");
+		arg2 = +input.val();
 		outText = arg1 + " " + operation + " " + arg2 + " = ";
-		input.prop("value", execute());
+		input.val(execute());
 		if (errDiv0 == false) {
 			//Проверка, нет-ли вытесненных в память операций с низким приоритетом:
 			if (memory != null && memoryOperation !=null) {
@@ -78,14 +78,14 @@ function btnEqual() {
 				outText = arg1 + " " + operation + " " + outText;
 				memory = null;
 				memoryOperation = null;
-				input.prop("value", execute());
+				input.val(execute());
 			}
-			outText += input.prop("value");
+			outText += input.val();
 			operation = null;
 			arg1 = null;
 		}
 	} else {
-		outText = input.prop("value");
+		outText = input.val();
 	}
 	printResult(outText);
 }
@@ -99,7 +99,7 @@ function btnBinaryOperation(opText) {
 		case "+":
 		case "-":	
 			if (arg1 != null) {	//В этом случае сейчас будет задан второй аргумент и можно начинать вычисления
-				arg2 = +input.prop("value");
+				arg2 = +input.val();
 				execute ();
 				if (errDiv0) {
 					break;
@@ -115,9 +115,9 @@ function btnBinaryOperation(opText) {
 					execute();
 				}
 			} else {
-				arg1 = +input.prop("value");
+				arg1 = +input.val();
 			}
-			input.prop("value", "");
+			input.val("");
 			operation = newOperation;
 			break;
 		//Бинарные операции с высоким приоритетом
@@ -131,14 +131,14 @@ function btnBinaryOperation(opText) {
 					arg1 = null;
 					operation = null;
 				} else {
-					arg2 = +input.prop("value");
+					arg2 = +input.val();
 					execute ();
 				}
 			}
 			if (arg1 == null) {
-				arg1 = +input.prop("value");
+				arg1 = +input.val();
 			}
-			input.prop("value", "");
+			input.val("");
 			operation = newOperation;
 			break;
 		default:
@@ -174,9 +174,9 @@ function execute() {
 //Выводит результат работы команды на интерфейс
 function printResult(outText) {
 	if (arg1 != null) {
-		outText = arg1 + " " + operation + " " + input.prop("value");
+		outText = arg1 + " " + operation + " " + input.val();
 	} else if (outText == "") {
-		outText = input.prop("value");
+		outText = input.val();
 	}
 	if (memory != null && memoryOperation != null) {
 		outText = memory + " " + memoryOperation + " " + outText;
@@ -184,7 +184,7 @@ function printResult(outText) {
 	if (errDiv0 == true) {
 		resetcalc();
 		outText = "ОШИБКА: Деление на ноль.";
-		input.prop("value", "");
+		input.val("");
 	}
 	output.html(outText);
 	input[0].focus();

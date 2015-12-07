@@ -15,7 +15,7 @@ function testResult() {
 			max++;
 		}
 		
-		mustChecked = decode(+el.attr("value"), +el.attr("code"));
+		mustChecked = decode(+el.val(), +el.attr("code"));
 		
 		if (mustChecked) {
 			checkGroups[el.attr("name")].countRight++;
@@ -32,7 +32,7 @@ function testResult() {
 	$(":radio").each(function(index, elem){
 		var el = $(elem);
 		
-		mustChecked = decode(+el.attr("value"), +el.attr("code"));
+		mustChecked = decode(+el.val(), +el.attr("code"));
 		
 		if(mustChecked) {
 			if (el.prop("checked")) {
