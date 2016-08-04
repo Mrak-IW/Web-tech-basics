@@ -1,5 +1,5 @@
 # Курс: Основы WEB-технологий.
--HTML5
--CSS3
--JavaScript
--JQuery
+-HTML5<br />
+-CSS3<br />
+-JavaScript<br />
+-JQuery<br />
